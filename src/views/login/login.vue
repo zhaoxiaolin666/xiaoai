@@ -141,7 +141,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-  padding-top: 201px;
+  padding-top: 200px;
 }
 .box1 {
   width: 30%;
