@@ -43,7 +43,7 @@ export default {
         password: "",
         code: ""
       },
-      obj:{},
+      obj: {},
 
       rules: {
         username: [
@@ -80,32 +80,37 @@ export default {
     login() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          axios.post('/api/user/login',{username:this.form.username,password:this.form.password,code:this.form.code}).then(res=>{
-            if(res.data.code===200){
-              this.form.username='',
-              this.form.password='',
-                this.form.code='',
-               this.$message.success(res.data.message);
-               console.log("登录打印"+res.data)
-               this.obj = res.data.data[0]
+          axios
+            .post("/api/user/login", {
+              username: this.form.username,
+              password: this.form.password,
+              code: this.form.code
+            })
+            .then(res => {
+              if (res.data.code === 200) {
+                (this.form.username = ""),
+                  (this.form.password = ""),
+                  (this.form.code = ""),
+                  this.$message.success(res.data.message);
+                console.log("登录打印" + res.data);
+                this.obj = res.data.data[0];
                 // console.log("登录打印2"+res.data.data)
-               localStorage.setItem('usernames',JSON.stringify(this.obj))
-               //跳转主页
-               this.$router.push('/homepage')
-            }else{
-               this.$message.error(res.data.message);
-            }
-            console.log(res.data)
-          }).catch(err=>{
-
-            console.log(err)
-          })
-        }
-        else {
+                localStorage.setItem("usernames", JSON.stringify(this.obj));
+                //跳转主页
+                this.$router.push("/homepage");
+              } else {
+                this.$message.error(res.data.message);
+              }
+              console.log(res.data);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
           this.$message.error("登录失败");
         }
       });
-    },
+    }
   },
   //页面初始化方法
   mounted() {
@@ -136,7 +141,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-  padding-top: 200px;
+  padding-top: 201px;
 }
 .box1 {
   width: 30%;
